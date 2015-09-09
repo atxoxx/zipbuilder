@@ -2,10 +2,11 @@ LICENSE
 
 #Semi-Automatic packaging of the i9506 FireWork Kernel into flashable zip files
 #Copyright 2015 Kiffmet@XDA-Developers
-#You are free to redistribute, bundle and modify this if you mention me in the copyrights of the
-#project you used this in. All changes to this have to be made open source under the same condidion.
+#You are free to redistribute, bundle and modify this if 
+#you mention me in the copyrights of the project you used this in. 
+#All changes to this have to be made open source under the same condidion.
 
------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
 
 README
 
@@ -27,14 +28,14 @@ Do also have a look at the resources directory, where the source boot.img files 
 If you want to modify the initrd, you need to unpack the appropriate boot.img with the supplied AIK-Tools (not made by me, see tools/AIK-Linux/authors.txt) first.
 I did make changes to ramdisk/init.rc in order to enable init.d
 
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 The build_all_zips script simply invokes build_flashable_zip multiple times with different parameters for different rom versions!
 
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 The cleanup script deletes some of the files in temp/ and output/
 
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
