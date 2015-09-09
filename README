@@ -1,0 +1,40 @@
+LICENSE
+
+#Semi-Automatic packaging of the i9506 FireWork Kernel into flashable zip files
+#Copyright 2015 Kiffmet@XDA-Developers
+#You are free to redistribute, bundle and modify this if you mention me in the copyrights of the
+#project you used this in. All changes to this have to be made open source under the same condidion.
+
+-----------------------------------------------------------------------------------------------------
+
+README
+
+The build_flashable_zip script creates a CWM/TWRP flashable zip with the zImage, dt.img and modules from the kernel directory in the parent folder. It also bundles Su, Busybox and some init.d scripts aswell as basic cpu governor settings.
+
+Be sure to have the zipbuilder folder in the same directory as your firework kernel source dir.
+You will probably have to modify the BASEDIR Variable within the script.
+
+You NEED to supply the VERSION and ROM parameters. For this script to work the i9506 Kernel needs to have already been compiled by using the mk_all script without errors.
+
+Example:
+
+VERSION=0.4.0 ROM=XXUDOB5 ./build_flashable_zip
+
+this will create a zip called FireWork-Kernel-0.4.0-XXUDOB5.zip
+
+Do also have a look at the resources directory, where the source boot.img files and the base files for the .zip are stored if you intend to mod something.
+
+If you want to modify the initrd, you need to unpack the appropriate boot.img with the supplied AIK-Tools (not made by me, see tools/AIK-Linux/authors.txt) first.
+I did make changes to ramdisk/init.rc in order to enable init.d
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+The build_all_zips script simply invokes build_flashable_zip multiple times with different parameters for different rom versions!
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+The cleanup script deletes some of the files in temp/ and output/
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+

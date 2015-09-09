@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#Semi-Automatic packaging of the i9506 FireWork Kernel into flashable zip files
+#Copyright 2015 Kiffmet@XDA-Developers
+#You are free to redistribute, bundle and modify this if you mention me in the copyrights of the
+#project you used this in. All changes to this have to be made open source under the same condidion.
+
+VERSION=0.4.0
+
+VERSION=$VERSION ROM=XXUDOA6 ./build_flashable_zip
+VERSION=$VERSION ROM=XXUDOB5 ./build_flashable_zip
+VERSION=$VERSION ROM=XXUDOC5 ./build_flashable_zip
+VERSION=$VERSION ROM=XXUDOF2 ./build_flashable_zip

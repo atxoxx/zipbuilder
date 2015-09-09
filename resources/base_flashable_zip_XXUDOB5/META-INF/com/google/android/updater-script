@@ -1,0 +1,156 @@
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/system", "/system");
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/userdata", "/data");
+ui_print(" ");
+ui_print(" ");
+ui_print("  ***** FireWork XXUDOB5 kernel *****");
+ui_print("          by Kiffmet @ XDA");
+ui_print(" ");
+ui_print(" Flashing FireWork insecure kernel...");
+
+ui_print(" Installing Kernel");
+package_extract_file("boot.img", "/dev/block/platform/msm_sdcc.1/by-name/boot");
+
+delete("/system/lib/modules/dhd.ko");
+delete("/system/lib/modules/dma_test.ko");
+delete("/system/lib/modules/gspca_main.ko");
+delete("/system/lib/modules/scsi_wait_scan.ko");
+delete("/system/lib/modules/max2165.ko");
+delete("/system/lib/modules/mc44s803.ko");
+delete("/system/lib/modules/mt20xx.ko");
+delete("/system/lib/modules/mt2060.ko");
+delete("/system/lib/modules/mt2063.ko");
+delete("/system/lib/modules/mt2131.ko");
+delete("/system/lib/modules/mt2266.ko");
+delete("/system/lib/modules/mxl5005s.ko");
+delete("/system/lib/modules/mxl5007t.ko");
+delete("/system/lib/modules/qt1010.ko");
+delete("/system/lib/modules/tda827x.ko");
+delete("/system/lib/modules/tda8290.ko");
+delete("/system/lib/modules/tda9887.ko");
+delete("/system/lib/modules/tda18212.ko");
+delete("/system/lib/modules/tda18218.ko");
+delete("/system/lib/modules/tda18271.ko");
+delete("/system/lib/modules/tea5761.ko");
+delete("/system/lib/modules/tea5767.ko");
+delete("/system/lib/modules/tuner-simple.ko");
+delete("/system/lib/modules/tuner-types.ko");
+delete("/system/lib/modules/tuner-xc2028.ko");
+delete("/system/lib/modules/xc4000.ko");
+delete("/system/lib/modules/xc5000.ko");
+
+
+package_extract_dir("system", "/system");
+
+set_perm(0, 0, 0644, "/system/lib/modules/dhd.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/dma_test.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/gspca_main.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/scsi_wait_scan.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/max2165.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mc44s803.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mt20xx.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mt2060.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mt2063.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mt2131.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mt2266.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mxl5005s.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mxl5007t.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/qt1010.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tda827x.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tda8290.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tda9887.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tda18212.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tda18218.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tda18271.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tea5761.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tea5767.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tuner-simple.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tuner-types.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tuner-xc2028.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/xc4000.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/xc5000.ko");
+
+ui_print(" Installing Busybox");
+
+set_perm(0, 1000, 0755, "/system/xbin/busybox");
+symlink("/system/xbin/busybox", "/system/bin/busybox");
+run_program("/system/xbin/busybox", "--install", "-s", "/system/xbin");
+
+set_perm(0, 0, 0755, "/system/bin/.ext/.su");
+set_perm(0, 0, 0755, "/system/etc/install-recovery.sh");
+symlink("/system/etc/install-recovery.sh", "/system/bin/install-recovery.sh");
+set_perm(0, 0, 0755, "/system/bin/install-recovery.sh");
+set_perm(0, 0, 0644, "/system/etc/.installed_su_daemon");
+set_perm(0, 0, 0755, "/system/etc/init.d");
+set_perm(0, 0, 0755, "/system/etc/init.d/00-testinitd");
+set_perm(0, 0, 0755, "/system/etc/init.d/01-fstrim");
+set_perm(0, 0, 0755, "/system/etc/init.d/99SuperSUDaemon");
+set_perm(0, 0, 0755, "/system/etc/init.qcom.post_boot.sh");
+
+ui_print(" Installing SU");
+
+set_perm(0, 0, 0755, "/system/xbin/su");
+set_perm(0, 0, 0755, "/system/xbin/daemonsu");
+set_perm(0, 0, 0755, "/system/xbin/sugote");
+set_perm(0, 0, 0755, "/system/xbin/sugote-mksh");
+set_perm(0, 0, 0755, "/system/xbin/supolicy");
+set_perm(0, 0, 0644, "/system/lib/libsupol.so");
+run_program("/system/xbin/su", "--install");
+
+ui_print(" Enabling init.d Support");
+
+set_perm(0, 0, 0755, "/system/bin/sysinit");
+
+ui_print(" Killing the KNOX-Crap. Forever.");
+
+delete_recursive("/system/app/Bridge");
+delete_recursive("/system/app/KNOXStore");
+delete_recursive("/system/app/KnoxAttestationAgent");
+delete_recursive("/system/app/KnoxMigrationAgent");
+delete_recursive("/system/app/KnoxSetupWizardClient");
+delete_recursive("/system/app/KnoxSetupWizardStub");
+delete_recursive("/system/priv-app/KLMSAgent");
+delete_recursive("/system/app/SecurityLogAgent");
+
+delete_recursive("/data/data/com.samsung.klmsagent/");
+delete_recursive("/data/data/com.samsung.knox.rcp.components/");
+delete_recursive("/data/data/com.sec.enterprise.knox.attestation/");
+delete_recursive("/data/data/com.sec.enterprise.knox.cloudmdm.smdms/");
+delete_recursive("/data/data/com.sec.enterprise.mdm.services.simpin/");
+delete_recursive("/data/data/com.sec.enterprise.mdm.vpn/");
+delete_recursive("/data/data/com.sec.knox.bridge/");
+delete_recursive("/data/data/com.sec.knox.containeragent/");
+delete_recursive("/data/data/com.sec.knox.containeragent2/");
+delete_recursive("/data/data/com.sec.knox.knoxsetupwizardclient/");
+delete_recursive("/data/data/com.sec.knox.packageverifier/");
+delete_recursive("/data/data/com.sec.knox.setupwizardstub/");
+delete_recursive("/data/data/com.sec.knox.shortcutsms/");
+delete_recursive("/data/data/com.sec.knox.store/");
+delete_recursive("/data/data/com.sec.knox.switcher/");
+
+delete("/data/dalvik-cache/arm/system@app@Bridge@Bridge.apk@classes.dex");
+delete("/data/dalvik-cache/arm/system@app@KNOXStore@KNOXStore.apk@classes.dex");
+delete("/data/dalvik-cache/arm/system@app@KnoxAttestationAgent@KnoxAttestationAgent.apk@classes.dex");
+delete("/data/dalvik-cache/arm/system@app@KnoxMigrationAgent@KnoxMigrationAgent.apk@classes.dex");
+delete("/data/dalvik-cache/arm/system@app@KnoxSetupWizardClient@KnoxSetupWizardClient.apk@classes.dex");
+delete("/data/dalvik-cache/arm/system@app@KnoxSetupWizardStub@KnoxSetupWizardStub.apk@classes.dex");
+delete("/data/dalvik-cache/arm/system@priv-app@KLMSAgent@KLMSAgent.apk@classes.dex");
+delete("/data/dalvik-cache/arm/system@app@SecurityLogAgent@SecurityLogAgent.apk@classes.dex");
+
+delete_recursive("/system/container");
+delete("/data/dalvik-cache/arm/system@container@KnoxPackageVerifier@KnoxPackageVerifier.apk@classes.dex");
+delete("/data/dalvik-cache/arm/system@container@KnoxShortcuts@KnoxShortcuts.apk@classes.dex");
+delete("/data/dalvik-cache/arm/system@container@KnoxSwitcher@KnoxSwitcher.apk@classes.dex");
+delete("/data/dalvik-cache/arm/system@container@ContainerAgent2@ContainerAgent2.apk@classes.dex");
+
+delete_recursive("/system/preloadedkiosk");
+delete("/data/dalvik-cache/arm/system@preloadedkiosk@kioskdefault@kioskdefault.apk@classes.dex");
+
+delete_recursive("/system/preloadedsso");
+delete("/data/dalvik-cache/arm/system@preloadedsso@samsungsso@samsungsso.apk_@classes.dex");
+delete("/data/dalvik-cache/arm/system@preloadedsso@ssoservice@ssoservice.apk_@classes.dex");
+
+ui_print(" Done Installing :))");
+unmount("/system");
+unmount("/data");
+ui_print(" ");
+ui_print(" All done. - Please reboot now!");

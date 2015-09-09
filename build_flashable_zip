@@ -1,0 +1,43 @@
+#!/bin/bash
+#Semi-Automatic packaging of the i9506 FireWork Kernel into flashable zip files
+#Copyright 2015 Kiffmet@XDA-Developers
+#You are free to redistribute, bundle and modify this if you mention me in the copyrights of the
+#project you used this in. All changes to this have to be made open source under the same condidion.
+
+BASEDIR=~/i9506
+RESOURCEDIR=$BASEDIR/zipbuilder/resources
+TEMPDIR=$BASEDIR/zipbuilder/temp
+KERNEL_SOURCE_DIR=$BASEDIR/Kernel_XXUDOE2
+
+
+echo "Cleanup from previous Builds"
+rm -R $TEMPDIR/newzip
+rm -R $TEMPDIR/boot.img
+rm -R $TEMPDIR/ramdisk-new.cpio.gz
+rm -R $TEMPDIR/ramdisk
+rm -R $TEMPDIR/split_img
+
+cp $KERNEL_SOURCE_DIR/output/zImage $TEMPDIR/zImage
+cp $KERNEL_SOURCE_DIR/output/dt.img $TEMPDIR/dt.img
+
+cp -Rf $RESOURCEDIR/base_flashable_zip_$ROM $TEMPDIR/
+mv $TEMPDIR/base_flashable_zip_$ROM $TEMPDIR/newzip
+find $KERNEL_SOURCE_DIR/output/lib/modules/ -name '*.ko' -exec cp -f {} $TEMPDIR/newzip/system/lib/modules/ \;
+
+cp $RESOURCEDIR/base_boot_img_$ROM/boot.img $TEMPDIR/boot.img
+
+cd $TEMPDIR
+sh $TEMPDIR/unpackimg.sh $TEMPDIR/boot.img
+
+echo "Inserting new kernel and dtb and repacking boot.img"
+
+mv $TEMPDIR/zImage $TEMPDIR/split_img/boot.img-zImage
+mv $TEMPDIR/dt.img $TEMPDIR/split_img/boot.img-dtb
+sh $TEMPDIR/repackimg.sh
+
+echo "Moving new boot.img to zip folder and create TWRP/CWM Zip"
+mv image-new.img $TEMPDIR/newzip/boot.img
+cd $TEMPDIR/newzip/
+zip -r $BASEDIR/zipbuilder/output/FireWork_Kernel-$VERSION-$ROM.zip META-INF/ system/ boot.img
+
+echo "Finished"

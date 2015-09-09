@@ -1,0 +1,51 @@
+#!/system/bin/sh
+#Init.d support by Kifmet@XDA
+#Licensed by GPLv3 or higher
+
+export PATH=${PATH}:/system/bin:/system/xbin
+FOLDER=/system/etc/init.d
+LOGFILE=/data/initdlog
+#1024*8 = 8192Bytes = 8KB
+MAXLOGSIZE=8192
+
+if [ -e $LOGFILE ];
+then
+	if [ "$(stat -c '%s' $LOGFILE)" -ge "$MAXLOGSIZE" ];
+	then
+		rm $LOGFILE
+		touch $LOGFILE
+		echo $(/system/bin/date) >> $LOGFILE
+	else
+		echo "" >> $LOGFILE
+		echo $(/system/bin/date) >> $LOGFILE
+	fi
+else
+	touch $LOGFILE
+	echo $(/system/bin/date) >> $LOGFILE
+fi		
+
+if [ -d $FOLDER ];
+then
+	echo "Folder $FOLDER exists" >> $LOGFILE
+else
+	echo "ERROR! Folder $FOLDER does not exist" >> $LOGFILE
+	exit 1
+fi
+
+if [ ! -z "$(ls $FOLDER)" ];
+then
+	echo "Initscripts found!" >> $LOGFILE
+	/system/xbin/busybox mount -t system -o remount,rw /system
+	chmod 755 /system/etc/init.d/*
+	/system/xbin/busybox mount -t system -o remount,ro /system
+else
+	echo "ERROR! No Initscripts found in $FOLDER!" >> $LOGFILE
+	exit 1
+fi
+
+for f in $FOLDER/*
+do
+	echo "Executing $f:" >> $LOGFILE
+	/system/bin/sh $f >> $LOGFILE
+done
+
