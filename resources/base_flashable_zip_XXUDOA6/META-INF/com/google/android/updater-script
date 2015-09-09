@@ -149,6 +149,9 @@ delete_recursive("/system/preloadedsso");
 delete("/data/dalvik-cache/arm/system@preloadedsso@samsungsso@samsungsso.apk_@classes.dex");
 delete("/data/dalvik-cache/arm/system@preloadedsso@ssoservice@ssoservice.apk_@classes.dex");
 
+ui_print(" Wiping Dalvik Cache");
+delete_recursive("/data/dalvik-cache");
+
 ui_print(" Done Installing :))");
 unmount("/system");
 unmount("/data");
