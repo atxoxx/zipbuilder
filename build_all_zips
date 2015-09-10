@@ -12,3 +12,4 @@ VERSION=$VERSION ROM=XXUDOB5 ./build_flashable_zip
 VERSION=$VERSION ROM=XXUDOC5 ./build_flashable_zip
 VERSION=$VERSION ROM=XXUDOD3 ./build_flashable_zip
 VERSION=$VERSION ROM=XXUDOF2 ./build_flashable_zip
+VERSION=$VERSION ROM=DARKLORD_S6_v3 ./build_flashable_zip

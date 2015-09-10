@@ -1,0 +1,83 @@
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/system", "/system");
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/userdata", "/data");
+ui_print(" ");
+ui_print(" ");
+ui_print("  ***** FireWork kernel for Darklord S6 Port v3 *****");
+ui_print("               by Kiffmet @ XDA");
+ui_print(" ");
+ui_print(" Flashing FireWork insecure kernel...");
+
+ui_print(" Installing Kernel");
+package_extract_file("boot.img", "/dev/block/platform/msm_sdcc.1/by-name/boot");
+
+delete("/system/lib/modules/dhd.ko");
+delete("/system/lib/modules/dma_test.ko");
+delete("/system/lib/modules/gspca_main.ko");
+delete("/system/lib/modules/scsi_wait_scan.ko");
+delete("/system/lib/modules/max2165.ko");
+delete("/system/lib/modules/mc44s803.ko");
+delete("/system/lib/modules/mt20xx.ko");
+delete("/system/lib/modules/mt2060.ko");
+delete("/system/lib/modules/mt2063.ko");
+delete("/system/lib/modules/mt2131.ko");
+delete("/system/lib/modules/mt2266.ko");
+delete("/system/lib/modules/mxl5005s.ko");
+delete("/system/lib/modules/mxl5007t.ko");
+delete("/system/lib/modules/qt1010.ko");
+delete("/system/lib/modules/tda827x.ko");
+delete("/system/lib/modules/tda8290.ko");
+delete("/system/lib/modules/tda9887.ko");
+delete("/system/lib/modules/tda18212.ko");
+delete("/system/lib/modules/tda18218.ko");
+delete("/system/lib/modules/tda18271.ko");
+delete("/system/lib/modules/tea5761.ko");
+delete("/system/lib/modules/tea5767.ko");
+delete("/system/lib/modules/tuner-simple.ko");
+delete("/system/lib/modules/tuner-types.ko");
+delete("/system/lib/modules/tuner-xc2028.ko");
+delete("/system/lib/modules/xc4000.ko");
+delete("/system/lib/modules/xc5000.ko");
+delete("/system/lib/libhardware_legacy.so");
+
+package_extract_dir("system", "/system");
+
+set_perm(0, 0, 0644, "/system/lib/modules/dhd.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/dma_test.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/gspca_main.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/scsi_wait_scan.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/max2165.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mc44s803.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mt20xx.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mt2060.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mt2063.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mt2131.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mt2266.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mxl5005s.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/mxl5007t.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/qt1010.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tda827x.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tda8290.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tda9887.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tda18212.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tda18218.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tda18271.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tea5761.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tea5767.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tuner-simple.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tuner-types.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/tuner-xc2028.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/xc4000.ko");
+set_perm(0, 0, 0644, "/system/lib/modules/xc5000.ko");
+
+set_perm(0, 0, 0644, "/system/lib/libhardware_legacy.so");
+
+set_perm(0, 0, 0755, "/system/etc/init.d");
+set_perm(0, 0, 0755, "/system/etc/init.d/00-testinitd");
+set_perm(0, 0, 0755, "/system/etc/init.d/01-fstrim");
+set_perm(0, 0, 0755, "/system/etc/init.qcom.post_boot.sh");
+
+ui_print(" Done Installing :))");
+unmount("/system");
+unmount("/data");
+ui_print(" ");
+ui_print(" All done. - Please reboot now!");
