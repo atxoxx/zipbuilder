@@ -1,0 +1,8 @@
+#!/system/bin/sh 
+
+/system/xbin/busybox mount -t system -o remount,rw /system
+fstrim -v /system 
+/system/xbin/busybox mount -t system -o remount,ro /system
+fstrim -v /cache 
+fstrim -v /data 
+sync
