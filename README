@@ -15,7 +15,7 @@ The build_flashable_zip script creates a CWM/TWRP flashable zip with the zImage,
 Be sure to have the zipbuilder folder in the same directory as your firework kernel source dir.
 You will probably have to modify the BASEDIR Variable within the script.
 
-You NEED to supply the VERSION and ROM parameters. For this script to work the i9506 Kernel needs to have already been compiled by using the mk_all script without errors.
+You NEED to supply the VERSION and ROM parameters as the script will choose the appropriate base files for the specified ROM. For this script to work the i9506 Kernel needs to have already been compiled by using the mk_all script without errors.
 
 Example:
 
